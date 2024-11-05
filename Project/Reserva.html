@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Prime</title>
+    <link rel="icon" type="image/png" href="Assets/imgs/favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/app.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="padding-top: 70px;">
+
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand mx-4">Hotel Prime</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="Index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planos.html">Planos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Sobre.html">Sobre Nós</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Gerenciamento de Reservas de Hotel</h1>
+
+        
+        <div id="reserva-form-container" class="mt-4">
+            <h2>Faça sua Reserva</h2>
+            <div class="border border-dark p-4 shadow bg-white rounded">
+                <form class="row g-3 needs-validation" id="reservaForm" novalidate>
+                    <div class="col-md-6">
+                        <label for="nome" class="form-label">Nome do Usuário</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Insira seu primeiro nome" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input type="text" class="form-control" id="cpf" placeholder="CPF do Usuário" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <input type="text" class="form-control" id="email" placeholder="Insira seu email" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="telefone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" placeholder="Telefone" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="plano" class="form-label">Plano</label>
+                        <select class="form-select" id="plano" required>
+                            <option selected disabled value="">Escolha...</option>
+                            <option>Simples</option>
+                            <option>Luxo</option>
+                            <option>Suíte</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cep" class="form-label">CEP</label>
+                        <input type="text" class="form-control" id="cep" placeholder="CEP" required>
+                    </div>
+                    <div class="col-12 d-flex align-items-center">
+                        <input class="form-check-input me-2" type="checkbox" value="" id="invalidCheck" required>
+                        <label class="form-check-label" for="invalidCheck">
+                            Concordo com os termos e condições
+                        </label>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="button" onclick="realizarReserva()">Realizar Reserva</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="reservas-container" class="container mt-5">
+        <h2>Reservas Atuais</h2>
+        <ul id="lista-reservas" class="list-group"></ul>
+        <button class="btn btn-danger mt-3" onclick="desfazerUltimaReserva()">Desfazer Última Reserva</button>
+    </div>
+
+    <footer class="container-fluid fixed-bottom bg-dark text-white p-2 text-center">
+        <p>Hotel Prime &copy; 2024</p>
+    </footer>
+
+    <script>
+        function realizarReserva() {
+          
+            const nome = document.getElementById('nome').value;
+            const cpf = document.getElementById('cpf').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const plano = document.getElementById('plano').value;
+            const cep = document.getElementById('cep').value;
+
+            
+            if (!nome || !cpf || !email || !telefone || !plano || !cep) {
+                alert("Por favor, preencha todos os campos!");
+                return;
+            }
+
+           
+            const reservaItem = document.createElement('li');
+            reservaItem.className = 'list-group-item';
+            reservaItem.innerText = `Nome: ${nome} | CPF: ${cpf} | Email: ${email} | Telefone: ${telefone} | Plano: ${plano} | CEP: ${cep}`;
+
+            
+            document.getElementById('lista-reservas').appendChild(reservaItem);
+
+           
+            document.getElementById('reservaForm').reset();
+        }
+
+        function desfazerUltimaReserva() {
+            const listaReservas = document.getElementById('lista-reservas');
+            if (listaReservas.lastChild) {
+                listaReservas.removeChild(listaReservas.lastChild);
+            } else {
+                alert("Não há reservas para desfazer.");
+            }
+        }
+    </script>
+</body>
+</html>
