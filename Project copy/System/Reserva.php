@@ -10,20 +10,26 @@ include '../System/ReservationController.php';
     <title>Bates Hotel</title>
     <link rel="stylesheet" href="../assets/bootstrap.min.css">
 </head>
-<body style="padding-top: 70px;">
+<body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">Bates Hotel</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="../Index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="../planos.html">Planos</a></li>
-                <li class="nav-item"><a class="nav-link" href="../sobre.html">Sobre Nós</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
+        <a class="navbar-brand mx-4">Bates Hotel</a>
+        <div class=" collapse navbar-collapse bg-dark text-white p-2 d-flex align-items-center ">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../Index.html"> Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../planos.html"> Planos</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../sobre.html"> Sobre Nós</a>
+                </li>
             </ul>
         </div>
-    </div>
-</nav>
+    </nav>
 
 <div class="container mt-5">
     <h1>Gerenciamento de Reservas de Hotel</h1>
