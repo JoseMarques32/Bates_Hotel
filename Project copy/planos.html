@@ -13,45 +13,59 @@
 <body>
 
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
-        <a class="navbar-brand mx-4">Bates Hotel</a>
-        <div class=" collapse navbar-collapse bg-dark text-white p-2 d-flex align-items-center ">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="Index.html"> Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="planos.html"> Planos</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="Sobre.html"> Sobre Nós</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-4" href="#">Bates Hotel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="planos.html">Planos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Sobre.html">Sobre Nós</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <h1 class="text-center mt-5">Plano Básico</h1>
-    <h4 class="text-center">Conheça nosso plano mais básico, que oferece Qualidade e Conforto, com um Ótimo Custo-Beneficio!!</h4>
-    <img src="Assets/imgs/Plano-Basico.jpg" alt="Foto-PlanoBasico" class="img-fluid mt-5" style="height: 70vh;">
+    
+    <div class="container mt-5">
+        
+        <div class="text-center my-5">
+            <h1>Plano Simples</h1>
+            <h4>Conheça nosso plano mais básico, que oferece Qualidade e Conforto, com um Ótimo Custo-Beneficio!!</h4>
+            <img src="Assets/imgs/Plano-Basico.jpg" alt="Foto Plano Básico" class="img-fluid mt-3" style="height: 70vh;">
+        </div>
 
-    <h1 class="text-center mt-5">Plano Intermediário</h1>
-    <h4 class="text-center">Conheça nosso plano Intermediário, a mistura perfeita entre Qualidade e Baixo-Custo!!</h4>
-    <img src="Assets/imgs/Plano-Intermediário.jpg" alt="Foto-PlanoIntermediario" class="img-fluid mt-5" style="height: 90vh;">>
+      
+        <div class="text-center my-5">
+            <h1>Plano de Luxo</h1>
+            <h4>Conheça nosso plano de luxo, a mistura perfeita entre Qualidade, Conforto e Beleza!!</h4>
+            <img src="Assets/imgs/Plano-Intermediário.jpg" alt="Foto Plano Intermediário" class="img-fluid mt-3" style="height: 90vh;">
+        </div>
 
-    <h1 class="text-center mt-5">Plano Premium</h1>
-    <h4 class="text-center">Conheça o Incrível Plano Premium, Com tudo que há de melhor em luxo, conforto e muitas outras maravilhas!!</h4>
-    <img src="Assets/imgs/Plano-Premium.jpg" alt="Foto-PlanoPremium" class="img-fluid mt-5" style="height: 70vh;">>
-
-    <div class="container-fluid fixed-bottom">
-        <div class="row">
-            <div class="col bg-dark text-white p-2 text-center">
-                <p>Bates Hotel &copy 2024 </p>
-            </div>
+       
+        <div class="text-center my-5">
+            <h1>Plano Suite</h1>
+            <h4>Conheça o Incrível Plano Suíte, com tudo que há de melhor em luxo, conforto e muitas outras maravilhas!!</h4>
+            <img src="Assets/imgs/Plano-Premium.jpg" alt="Foto Plano Premium" class="img-fluid mt-3" style="height: 70vh;">
         </div>
     </div>
-    
-    </body>
-    
-    </html>
+
+   
+    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+        <div class="container">
+            <p class="mb-0">Bates Hotel &copy; 2024</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
