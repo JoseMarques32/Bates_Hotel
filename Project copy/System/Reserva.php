@@ -49,9 +49,9 @@ include '../System/ReservationController.php';
                     <label for="tipo_quarto" class="form-label">Plano de Quarto</label>
                     <select class="form-select" id="tipo_quarto" name="tipo_quarto" required>
                         <option selected disabled>Escolha...</option>
-                        <option value="simples">Simples</option>
-                        <option value="luxo">Luxo</option>
-                        <option value="suite">Suíte</option>
+                        <option value="Simples">Simples</option>
+                        <option value="Luxo">Luxo</option>
+                        <option value="Suíte">Suíte</option>
                     </select>
                 </div>
                 <div class="col-md-2 mt-3">
@@ -73,7 +73,7 @@ include '../System/ReservationController.php';
 <div id="reservas-container" class="container mt-5">
     <h2>Reservas Atuais</h2>
     <ul id="lista-reservas" class="list-group"></ul>
-    <button class="btn btn-danger mt-3" onclick="desfazerUltimaReserva()">Desfazer Última Reserva</button>
+    <button class="btn btn-danger mt-3" onclick="desfazerReserva()">Desfazer Última Reserva</button>
 </div>
 <script src="../scripts/app.js"></script>
 </body>

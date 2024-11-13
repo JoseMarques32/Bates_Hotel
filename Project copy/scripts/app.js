@@ -1,3 +1,4 @@
+
 class Quarto {
     constructor(tipo, capacidade, preco, comodidades) {
         this.tipo = tipo;
@@ -11,11 +12,13 @@ class Quarto {
     }
 }
 
+
 const QuartoFactory = {
     criarQuartoSimples: () => new Quarto("Simples", 2, 250, ["Internet e TV a cabo grátis."]),
     criarQuartoLuxo: () => new Quarto("Luxo", 3, 200.0, ["Internet e TV a cabo grátis", "Café da manhã", "Ar condicionado", "Banheira."]),
-    criarSuite: () => new Quarto("Suíte", 4, 350.0, ["Internet e TV  cabo grátis", "Café da manhã", "Ar condicionado", "Banheira", "Frigobar grátis."])
+    criarSuite: () => new Quarto("Suíte", 4, 350.0, ["Internet e TV a cabo grátis", "Café da manhã", "Ar condicionado", "Banheira", "Frigobar grátis."])
 };
+
 
 class ArmazenamentoReserva {
     constructor() {
@@ -33,7 +36,7 @@ class ArmazenamentoReserva {
 
     atualizarUI() {
         const listaReservas = document.getElementById('lista-reservas');
-        listaReservas.innerHTML = '';
+        listaReservas.innerHTML = '';  
         this.reservas.forEach(reserva => {
             const li = document.createElement('li');
             li.className = 'list-group-item';
@@ -41,7 +44,13 @@ class ArmazenamentoReserva {
             listaReservas.appendChild(li);
         });
     }
+
+    removerReserva(indice) {
+        this.reservas.splice(indice, 1); 
+        this.atualizarUI(); 
+    }
 }
+
 
 class ReservaHistorico {
     constructor() {
@@ -58,41 +67,57 @@ class ReservaHistorico {
     }
 }
 
+
 const armazenamentoReserva = new ArmazenamentoReserva();
 const reservaHistorico = new ReservaHistorico();
 
-function desfazerUltimaReserva() {
-    fetch("ReservationDelete.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            alert(data.message);  
-            carregarReservas();  
-        } else {
-            alert('Erro ao desfazer reserva: ' + data.message); 
-        }
-    })
-    .catch(error => {
-        console.log("Erro ao excluir reserva:", error);
-    });
+
+function carregarReservas() {
+    fetch("ListarReservas.php")
+        .then(response => response.json())
+        .then(data => {
+            const listaReservas = document.getElementById('lista-reservas');
+            listaReservas.innerHTML = '';  
+
+            data.forEach(reserva => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.textContent = `${reserva.nome_usuario} - Quarto: ${reserva.tipo_quarto}, Comodidades: ${reserva.comodidades.join(", ")}`;
+                listaReservas.appendChild(li);
+            });
+        })
+        .catch(error => console.log('Erro ao listar reservas:', error));
 }
+
 
 function realizarReserva() {
     const nome = document.getElementById("nome").value;
     const cpf = document.getElementById("cpf").value; 
     const tipoQuarto = document.getElementById("tipo_quarto").value;
     const checkin = document.getElementById("checkin").value; 
-    const checkout = document.getElementById("checkout").value;  
+    const checkout = document.getElementById("checkout").value;
+
+    console.log("Tipo de quarto selecionado:", tipoQuarto); 
+
+    let quartoSelecionado;
+
+    
+    if (tipoQuarto === "Simples") {
+        quartoSelecionado = QuartoFactory.criarQuartoSimples();
+    } else if (tipoQuarto === "Luxo") {
+        quartoSelecionado = QuartoFactory.criarQuartoLuxo();
+    } else if (tipoQuarto === "Suíte") {
+        quartoSelecionado = QuartoFactory.criarSuite();
+    } else {
+        alert("Tipo de quarto inválido.");
+        console.log("Erro: Tipo de quarto inválido.", tipoQuarto);  
+        return;
+    }
 
     const reserva = {
         nome: nome,
-        cpf: cpf, 
-        quarto: new Quarto(tipoQuarto, 2, 250, ["Internet e TV a cabo grátis"]),
+        cpf: cpf,
+        quarto: quartoSelecionado,  
         checkin: checkin,
         checkout: checkout
     };
@@ -100,6 +125,7 @@ function realizarReserva() {
     reservaHistorico.salvarEstado(armazenamentoReserva.reservas);
     armazenamentoReserva.salvarReserva(reserva);
 
+   
     fetch("Reserva.php", {
         method: "POST",
         headers: {
@@ -121,16 +147,40 @@ function realizarReserva() {
     .catch(error => console.log("Erro ao realizar reserva:", error));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetch("ListarReservas.php")
+function desfazerReserva() {
+    if (armazenamentoReserva.reservas.length > 0) {
+        
+        const ultimaReserva = armazenamentoReserva.reservas[armazenamentoReserva.reservas.length - 1];
+
+        
+        fetch("ReservationDelete.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `id_reserva=${encodeURIComponent(ultimaReserva.id)}`
+        })
         .then(response => response.json())
         .then(data => {
-            data.forEach(reserva => {
-                const li = document.createElement('li');
-                li.className = 'list-group-item';
-                li.textContent = `${reserva.nome_usuario} - Quarto: ${reserva.tipo_quarto}, Comodidades: ${reserva.comodidades.join(", ")}`;
-                document.getElementById('lista-reservas').appendChild(li);
-            });
+            if (data.status === "success") {
+                
+                armazenamentoReserva.reservas.pop();
+                armazenamentoReserva.atualizarUI();  
+                alert("Reserva desfeita com sucesso.");
+            } else {
+                alert("Erro ao excluir reserva no banco de dados.");
+            }
         })
-        .catch(error => console.log('Erro ao listar reservas:', error));
+        .catch(error => {
+            console.log("Erro ao excluir reserva:", error);
+            alert("Erro ao excluir reserva.");
+        });
+    } else {
+        alert("Não há reservas para desfazer.");
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    carregarReservas(); 
 });
