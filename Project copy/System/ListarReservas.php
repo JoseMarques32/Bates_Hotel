@@ -1,5 +1,5 @@
 <?php
-require './Database/Database.php';
+require '../Database/Database.php';
 
 $stmt = $pdo->query("SELECT r.nome_usuario, r.cpf_usuario, q.tipo AS tipo_quarto, q.capacidade, q.preco, q.comodidades, 
                              r.data_checkin, r.data_checkout 

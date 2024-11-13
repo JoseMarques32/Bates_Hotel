@@ -122,7 +122,7 @@ function realizarReserva() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('ListarReservas.php')
+    fetch("ListarReservas.php")
         .then(response => response.json())
         .then(data => {
             data.forEach(reserva => {

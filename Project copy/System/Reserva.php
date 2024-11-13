@@ -1,5 +1,5 @@
 <?php
-include './ReservationController.php'
+include '../System/ReservationController.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ include './ReservationController.php'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bates Hotel</title>
-    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/bootstrap.min.css">
 </head>
 <body style="padding-top: 70px;">
 
@@ -69,6 +69,6 @@ include './ReservationController.php'
     <ul id="lista-reservas" class="list-group"></ul>
     <button class="btn btn-danger mt-3" onclick="desfazerUltimaReserva()">Desfazer Última Reserva</button>
 </div>
-<script src="app.js"></script>
+<script src="../scripts/app.js"></script>
 </body>
 </html>

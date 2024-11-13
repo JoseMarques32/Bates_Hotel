@@ -1,6 +1,6 @@
 <?php
 
-require './Database/Database.php';
+require '../Database/Database.php';
 
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
