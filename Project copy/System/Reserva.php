@@ -17,9 +17,9 @@ include '../System/ReservationController.php';
         <a class="navbar-brand" href="#">Bates Hotel</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="planos.html">Planos</a></li>
-                <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre Nós</a></li>
+                <li class="nav-item"><a class="nav-link" href="../Index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../planos.html">Planos</a></li>
+                <li class="nav-item"><a class="nav-link" href="../sobre.html">Sobre Nós</a></li>
             </ul>
         </div>
     </div>
