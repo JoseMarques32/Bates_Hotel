@@ -12,9 +12,9 @@ class Quarto {
 }
 
 const QuartoFactory = {
-    criarQuartoSimples: () => new Quarto("Simples", 2, 250, ["Internet e TV a cabo grátis"]),
-    criarQuartoLuxo: () => new Quarto("Luxo", 3, 200.0, ["Internet e TV a cabo grátis", "Café da manhã", "Ar condicionado", "Banheira"]),
-    criarSuite: () => new Quarto("Suíte", 4, 350.0, ["Internet e TV a cabo grátis", "Café da manhã", "Ar condicionado", "Banheira", "Frigobar grátis"])
+    criarQuartoSimples: () => new Quarto("Simples", 2, 250, ["Internet e TV a cabo grátis."]),
+    criarQuartoLuxo: () => new Quarto("Luxo", 3, 200.0, ["Internet e TV a cabo grátis", "Café da manhã", "Ar condicionado", "Banheira."]),
+    criarSuite: () => new Quarto("Suíte", 4, 350.0, ["Internet e TV  cabo grátis", "Café da manhã", "Ar condicionado", "Banheira", "Frigobar grátis."])
 };
 
 class ArmazenamentoReserva {
