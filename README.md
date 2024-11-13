@@ -59,4 +59,4 @@
 :warning: [SQL] <br>
 :warning: [Ambiente (Ex: Laragon)] <br>
 
-Copyright :copyright: 2023 - Lista Telefônica
+Copyright :copyright: 2024 - Bates Hotel
